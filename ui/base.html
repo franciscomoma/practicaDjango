@@ -1,0 +1,47 @@
+<!DOCTYPE>
+<html>
+    <head>
+        {% load static %}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static "css/fnews.css" %}">
+    </head>
+    <body id="body">
+        <header class="main-header">
+            <div class="main-header-container">
+                <h1 class="main-header-title">FBLOG</h1>
+                <span class="search-icon icon small-devices medium-devices"></span>
+                <input type="search" class="main-header-search" placeholder="Search">
+                <nav class="main-menu">
+                    <ul class="main-menu-list">
+                        <li class="main-menu-item"><a class="main-menu-item-link" href="">Technology</a></li>
+                        <li class="main-menu-item"><a class="main-menu-item-link" href="">Science</a></li>
+                        <li class="main-menu-item"><a class="main-menu-item-link" href="">Entertainment</a></li>
+                        <li class="main-menu-item"><a class="main-menu-item-link" href="">Politics</a></li>
+                        <li class="main-menu-item"><a class="main-menu-item-link" href="">International</a></li>
+                        <li class="main-menu-item"><a class="main-menu-item-link" href="">Sports</a></li>
+                    </ul>
+                </nav>
+                <span class="login-icon icon small-devices medium-devices"></span>
+                <div class="main-header-login">
+                    {% if user.is_authenticated %}
+                        Welcome {{ user.username }}: <a href="/new-post">Create post</a> or <a href="/logout">Logout</a>
+                    {% else %}
+                        <a href="/login">Log In</a> or <a href="/signup">Sign up</a>
+                    {% endif %}
+                </div>
+            </div>
+        </header>
+        {% block content %}
+        {% endblock %}
+        <footer class="main-footer">
+            <div class="main-footer-container">
+                <a href="#body"><h1 class="main-footer-title">FBLOG</h1></a>
+                <div class="main-footer-disclaimer">This site is a copy from <a href="digg.com">digg.com</a> in order to show my frontend skills</div>
+                <div class="main-footer-author">
+                    Francisco Molina - 2017
+                </div>
+            </div>
+        </footer>
+        <script type="text/javascript" src="{% static "js/fnews.js" %}"></script>
+    </body>
+</html>

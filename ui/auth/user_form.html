@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% load static %}
+    <section class="items-view">
+        <form method="post" novalidate>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div>
+                <button>Save</button>
+            </div>
+        </form>
+    </section>
+{% endblock %}

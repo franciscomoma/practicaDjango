@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% load static %}
+    <section class="items-view">
+        {% for post in object_list %}
+            <article class="item" id="{{ post.pk }}">
+                <a href="{% url 'posts_detail' post.blog.owner.username post.pk %}"><img class="item-thumbnail" src="\{{ post.thumbnail }}"></a>
+                <section class="item-container">
+                    <header class="item-header">
+                        <h2 class="item-subtitle">{{ post.subtitle }}</h2>
+                        <h1 class="item-title"><a class="item-title-link" href="{% url 'posts_detail' post.blog.owner.username post.pk %}">{{ post.title }}</a></h1>
+                        <div class="item-info">
+                            <div class="author">
+                                <img class="author-image" src="{% static "assets/user_small.jpg" %}" />
+                                <span class="author-name">{{ post.blog.owner.username }}</span>
+                            </div>
+                            <span class="published-on" data-timestamp="{{ post.publish_date.timestamp }}"></span>
+                        </div>
+                    </header>
+                    <section class="item-content"><p>{{ post.summary }}</p></section>
+                    <div class="item-social social">
+                        <a class="social-item likes">
+                            <span class="icon likes-icon"></span>
+                            <span class="caption likes-caption">Like</span>
+                        </a>
+                        <a href="./detail.html" class="social-item comments">
+                            <span class="icon comments-icon"></span>
+                            <span class="caption comments-caption">4</span>
+                        </a>
+                    </div>
+                </section>
+            </article>
+        {% endfor %}
+    </section>
+{% endblock %}

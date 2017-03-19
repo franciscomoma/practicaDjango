@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% load static %}
+    <section class="items-view">
+        {% for blog in object_list %}
+            <article class="item" id="2017010009">
+                <a href="/blogs/{{ blog.owner.username }}">{{ blog }}</a>
+            </article>
+        {% endfor %}
+    </section>
+{% endblock %}

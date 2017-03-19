@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% load static %}
+        <article class="detail-view" id="{{ object.pk }}">
+            <header class="detail-header">
+                <div class="detail-header-content">
+                    <h1 class="detail-title">{{ object.title }}</h1>
+                    <h2 class="detail-subtitle">{{ object.subtitle }}</h2>
+                    <section class="detail-info">
+                        <span class="published-on" data-timestamp="{{ object.publish_date.timestamp }}"></span>
+                        <div class="author">
+                            <img class="author-image" />
+                            <span class="author-name">{{ object.blog.owner.username }}</span>
+                        </div>
+                    </section>
+                </div>
+            </header>
+            <section class="detail-content">
+                {{ object.content }}
+            </section>
+        </article>
+{% endblock %}
