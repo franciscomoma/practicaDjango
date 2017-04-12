@@ -51,5 +51,8 @@ class BlogSerializer(FilteredReverseRelationSerializer):
         if 'view' in self.context:
             if self.context['view'].action in ('list'):
                 fields.pop('posts')
+            if self.context['view'].action in ('create', 'update'):
+                fields.pop('posts')
+                fields.pop('owner')
 
         return fields

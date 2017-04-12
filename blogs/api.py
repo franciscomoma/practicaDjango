@@ -2,6 +2,7 @@ import datetime
 
 from django.db.models.functions import Lower
 from django.http import Http404
+from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.filters import DjangoFilterBackend, OrderingFilter, SearchFilter
 
@@ -17,6 +18,20 @@ class BlogViewSet(ModelViewSet):
     filter_fields = ('owner__username',)
     search_fields = ('posts__title',)
     ordering_fields = ('title', 'posts__title', 'posts__id',)
+
+
+    def create(self, request, *args, **kwargs):
+        blogs = Blog.objects.filter(owner=request.user)
+
+        if blogs.count():
+            data = {'error': 'This user owns a blog'}
+            return Response(data, status=400)
+        else:
+            super(BlogViewSet, self).create(request, args, kwargs)
+
+    def perform_create(self, serializer):
+        request = self.request
+        serializer.save(owner=request.user)
 
 
 class PostViewSet(ModelViewSet):

@@ -1,17 +1,6 @@
 import datetime
 from rest_framework.permissions import BasePermission
 
-class BlogPermissions(BasePermission):
-    not_authenticated_methods = ['list', ]
-
-    def has_permission(self, request, view):
-        if view.action in self.not_authenticated_methods:
-            return True
-
-        if request.user.is_authenticated():
-            return True
-
-        return False
 
 class PostPermissions(BasePermission):
 

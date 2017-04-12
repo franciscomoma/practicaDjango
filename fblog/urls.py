@@ -32,7 +32,7 @@ urlpatterns = [
     url(r'^$', PostsListView.as_view()),
     url(r'^login/$', do_login),
     url(r'^logout/$', do_logout),
-    url(r'^signup/$', RegisterView.as_view()),
+    url(r'^signup/$', RegisterView.as_view(success_url="/")),
     url(r'^blogs/$', BlogsListView.as_view()),
     url(r'^new-post/$', PostCreation.as_view()),
     url(r'^blogs/(?P<username>[0-9a-z]+)/$', PostsListView.as_view()),
