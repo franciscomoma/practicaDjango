@@ -21,6 +21,7 @@ from blogs.views import PostsListView, PostDetailView, BlogsListView, PostCreati
 from blogs.api import BlogViewSet, PostViewSet
 from users.views import do_login, do_logout, RegisterView
 from users.api import UserViewSet
+from gallery.api import ImageUploadView
 
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
@@ -38,6 +39,7 @@ urlpatterns = [
     url(r'^blogs/(?P<username>[0-9a-z]+)/$', PostsListView.as_view()),
     url(r'^blogs/(?P<owner>[0-9a-z]+)/(?P<pk>[0-9]+)$', PostDetailView.as_view(), name="posts_detail"),
     url(r'^admin/', admin.site.urls),
-    url(r'^api/1.0/', include(router.urls))
+    url(r'^api/1.0/', include(router.urls)),
+    url(r'^api/1.0/image/', ImageUploadView.as_view()),
 ]
 
