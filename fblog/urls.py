@@ -26,7 +26,9 @@ router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
 router.register(r'blogs', BlogViewSet)
 router.register(r'posts', PostViewSet)
+router.register(r'blogs/(?P<blog_id>[0-9]+)/posts/(?P<post_id>[0-9]+)/reply', PostViewSet)
 router.register(r'blogs/(?P<blog_id>[0-9]+)/posts', PostViewSet)
+
 
 urlpatterns = [
     url(r'^$', PostsListView.as_view()),

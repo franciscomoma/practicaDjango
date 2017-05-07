@@ -61,9 +61,14 @@ class PostViewSet(ModelViewSet):
 
         return queryset
 
+    def create(self, request, *args, **kwargs):
+        if 'post_id' in kwargs:
+            if Post.objects.filter(pk=kwargs['post_id']).exists():
+                request.data['related_post'] = int(kwargs['post_id'])
+
+        return super(PostViewSet, self).create(request, args, kwargs)
 
     def perform_create(self, serializer):
-
         request = self.request
 
         try:

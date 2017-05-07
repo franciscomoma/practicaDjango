@@ -11,7 +11,7 @@ class PostSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Post
-        fields = ('url', 'title', 'publish_date', 'summary', 'thumbnail', 'content')
+        fields = ('url', 'title', 'publish_date', 'summary', 'thumbnail', 'content', 'related_post')
 
     def get_fields(self):
         fields = super(PostSerializer, self).get_fields()
