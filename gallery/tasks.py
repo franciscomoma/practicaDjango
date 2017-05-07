@@ -33,10 +33,10 @@ from django.contrib.auth.models import User
 def museum_create_picture_by_image(image, user):
     Picture.create_picture_by_image(Image.open(image), User.objects.get(pk=user))
     os.remove(image)
-    print('BACKGROUND TASK FINISHED!')
+    print('SINGLE IMAGE TASK FINISHED!')
 
 
 @app.task
 def museum_resize_all_images():
     Picture.resize_all_images()
-    print('BACKGROUND TASK FINISHED!')
+    print('ALL IMAGES RESIZED!')
