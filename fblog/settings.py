@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'blogs',
-    'users'
+    'users',
+    'museum',
+    'gallery'
 ]
 
 MIDDLEWARE = [
@@ -132,7 +134,8 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',),
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-    'PAGE_SIZE': 10
+    'PAGE_SIZE': 10,
+
 }
 
 LOGGING = {
@@ -158,3 +161,4 @@ LOGGING = {
 }
 
 AMQP_HOST = '127.0.0.1'
+UPLOADS_DIR = os.path.join(BASE_DIR, 'static', 'uploads')
