@@ -3,3 +3,4 @@
 .idea*
 *.png
 *.jpg
+*/node_modules/*
