@@ -40,7 +40,7 @@ urlpatterns = [
     url(r'^new-post/$', PostCreation.as_view()),
     url(r'^blogs/(?P<username>[0-9a-z]+)/$', PostsListView.as_view()),
     url(r'^blogs/(?P<owner>[0-9a-z]+)/(?P<pk>[0-9]+)$', PostDetailView.as_view(), name="posts_detail"),
-    url(r'^admin/', admin.site.urls),
+    url(r'^starlord/', admin.site.urls),
     url(r'^api/1.0/', include(router.urls)),
     url(r'^api/1.0/image/', ImageUploadView.as_view()),
 ]

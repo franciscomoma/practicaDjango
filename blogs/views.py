@@ -4,7 +4,7 @@ from django.db.models.functions import Lower
 from django.http import HttpResponseNotFound
 from django.utils.decorators import method_decorator
 from django.views.generic import ListView, DetailView
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 
 from blogs.models import Post, Blog
@@ -60,6 +60,9 @@ class PostCreation(CreateView):
 
     @method_decorator(login_required)
     def post(self, request, *args, **kwargs):
+        if not Blog.objects.filter(owner=request.user).exists():
+            Blog.objects.create(owner=request.user)
+
         return super(PostCreation, self).post(request, *args, kwargs)
 
     def form_valid(self, form):

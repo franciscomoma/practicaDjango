@@ -18,3 +18,14 @@ class RegisterView(CreateView):
         form = super(RegisterView, self).get_form(form_class)
         form.fields['password'].widget = PasswordInput()
         return form
+
+    def post(self, request):
+        post_inherited = super(RegisterView, self).post(self, request)
+
+        username = request.POST.get('username')
+        user = User.objects.get(username=username)
+        user.set_password(request.POST.get('password'))
+        user.save()
+
+        return post_inherited
+        

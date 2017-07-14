@@ -92,3 +92,6 @@ class Post(models.Model):
                                self.mention_email_subject,
                                self.mention_email_body.format(mentioned_user.username,
                                                               self.pk))
+
+    def get_absolute_url(self):
+        return '/'                                                          
