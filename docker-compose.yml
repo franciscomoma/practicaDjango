@@ -1,0 +1,15 @@
+version: '2'
+services:
+    fblog:
+        build: .
+        volumes:
+            - .:/app
+            - ../socket:/socket
+            - ../logs:/logs
+        command: sh run.sh
+        working_dir: /app
+        environment:
+            - DJANGO_SETTINGS_MODULE=fblog.settings_prod
+            - C_FORCE_ROOT=yes
+        extra_hosts:
+            - "dockerhost:172.31.33.202"
